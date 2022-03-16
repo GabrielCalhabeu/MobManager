@@ -17,3 +17,6 @@ It helps organise and individualize each enemy type by assigning them into group
 independent from the others, and can be damaged, healed, and have an status applied to it.
 
 The proram also has a "back up" system that is not yet fully implemented, but aims to recover whatever was stored in memory before the program closed, if it did not close corretly from it's last use.
+
+
+Readme File still not finished.
