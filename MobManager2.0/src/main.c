@@ -3,51 +3,6 @@
 #include "interface.h"
 #include "fileManager.h"
 int main() {
-//
-//    enemyList enemyList1;
-//    enemyList enemyList2;
-//    enemyList enemyList3;
-//    groupList groupList1;
-//
-//    makeEnemyList(&enemyList1);
-//    makeEnemyList(&enemyList2);
-//    makeGroupList(&groupList1);
-//
-//    createEnemyList(&enemyList1, 10, 1);
-//    createEnemyList(&enemyList2, 20, 5);
-//    createEnemyList(&enemyList3, 30, 3);
-//
-//    TypeGroup group1 = {
-//          .groupName = "Bandit",
-//          .enemyList = &enemyList1
-//    };
-//
-//    TypeGroup group2 = {
-//            .groupName = "Bandit Captain",
-//            .enemyList = &enemyList2
-//    };
-//    TypeGroup group3 = {
-//            .groupName = "Bandit Lord",
-//            .enemyList = &enemyList3
-//    };
-//    addGroup(group1, &groupList1);
-//    addGroup(group2, &groupList1);
-//    addGroup(group3, &groupList1);
-//
-//    flushGroupList(&groupList1);
-//
-//    makeEnemyList(&enemyList2);
-//    createEnemyList(&enemyList2, 20, 5);
-//
-//    saveFile(&groupList1, save);
-//
-//    addGroup(group2, &groupList1);
-//    saveBackUp(&groupList1);
-//    extractFileName();
-//    loadBackUp(&groupList1);
-//    printGroups(groupList1);
-//
-
 
     groupList groupList1;
     makeGroupList(&groupList1);
