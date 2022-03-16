@@ -10,7 +10,7 @@
 # About
 This is an enemy manager for DnD and other table-top RPGs, it consits of many types of groups, every which contains a specific amount of enemies.
 <p>
-  <img src="https://github.com/GabrielCalhabeu/MobManger/blob/main/github/mainMenu.png" alt="mainMenu">
+  <img src="https://github.com/GabrielCalhabeu/MobManager/blob/main/github/mainMenu.png" alt="mainMenu">
 </p>
 
 It helps organise and individualize each enemy type by assigning them into groups and then assigning indexes to them. Each enemy is
