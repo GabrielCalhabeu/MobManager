@@ -3,12 +3,10 @@
 #include "interface.h"
 #include "fileManager.h"
 int main() {
-
     groupList groupList1;
     makeGroupList(&groupList1);
 
     int option = 0;
-    int newOp = 0;
     char fileName[50];
     do{
         option = startMenu();
@@ -44,6 +42,7 @@ int main() {
                 fileName[strcspn(fileName, "\n")] = 0;
                 fflush(stdin);
                 loadFile(&groupList1, fileName);
+
                 break;
             case 5:
                 flushGroupList(&groupList1);
@@ -54,8 +53,6 @@ int main() {
                 getchar();
         }
     }while(option != 5);
-
-
 
 
     return 0;

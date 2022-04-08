@@ -100,7 +100,7 @@ void loadBackUp(groupList *groupList) {
             addGroup(group, groupList);
         }
         if(temp.ID == 1){
-            enemylist = (enemyList*) malloc(sizeof(*enemylist));
+            enemylist = (enemyList*) malloc(sizeof  (*enemylist));
             makeEnemyList(enemylist);
         }
         if(strcmp(state, "#") != 0){

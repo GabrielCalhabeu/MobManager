@@ -58,7 +58,7 @@ int groupMenu(groupList *groupList1){
     int option;
     int newOp;
 
-    char pos[10];
+    char pos[256];
     char posX[5];
     char posY[5];
     int pause = 0;
@@ -82,7 +82,7 @@ int groupMenu(groupList *groupList1){
             if(newOp < 1 || newOp > groupList1->size){
                 printf("\nGroup not found! press enter to continue...\n");
                 getchar();
-                getchar();
+                    getchar();
             }
             else{
                 deleteGroup(groupList1, newOp);
@@ -106,13 +106,14 @@ int groupMenu(groupList *groupList1){
 
             printf("\nInput the position of the enemy: ");
             fflush(stdin);
-            fgets(pos, 10, stdin);
+            fgets(pos, 256, stdin);
             pos[strcspn(pos, "\n")] = 0;
+
             fflush(stdin);
             printf("\nInput the damage dealt: ");
             scanf("%d", &damage);
 
-            for(int i = 0; i < 10; i++){
+            for(int i = 0; i < 256; i++){
                 if(pos[i] == 32){
                     pause = i;
                     break;
@@ -120,29 +121,54 @@ int groupMenu(groupList *groupList1){
             }
 
             strcopy(posX, pos,  pause);
-            strcopy(posY, (pos+pause+1),  pause);
 
-            if(atoi(posX) < 1 || atoi(posX) > groupList1->size){
-                printf("\nGroup not found! press enter to continue...\n");
-                getchar();
-                getchar();
+
+
+            int i = (pause+1);
+            int end = 0;
+            while(end == 0){
+                int counter = 0;
+                for(int j = i; i < 256; j++){
+                    ++counter;
+                    if(pos[j] == 32){
+                        pause = i;
+                        i = j+1;
+                        break;
+                    } else if(pos[j] == 0){
+                        end = 1;
+                        pause = i;
+                        i = j+1;
+                        break;
+                    }
+                }
+                if(1){
+                    strcopy(posY, (pos+pause),  counter-1);
+                    if(atoi(posX) < 1 || atoi(posX) > groupList1->size){
+                        printf("\nGroup not found! press enter to continue...\n");
+                        getchar();
+                        getchar();
+                    }
+                    else{
+                        damageEnemy(groupList1, atoi(posX), atoi(posY), damage, -1);
+                        //saveBackUp(groupList1);
+                    }
+                }
+
             }
-            else{
-                damageEnemy(groupList1, atoi(posX), atoi(posY), damage, -1);
-                saveBackUp(groupList1);
-            }
+
 
         } else if(option == 5){
 
             printf("\nInput the position of the enemy: ");
             fflush(stdin);
-            fgets(pos, 10, stdin);
+            fgets(pos, 256, stdin);
             pos[strcspn(pos, "\n")] = 0;
+
             fflush(stdin);
-            printf("\nInput the heal done: ");
+            printf("\nInput the healing dealt: ");
             scanf("%d", &damage);
 
-            for(int i = 0; i < 10; i++){
+            for(int i = 0; i < 256; i++){
                 if(pos[i] == 32){
                     pause = i;
                     break;
@@ -150,15 +176,39 @@ int groupMenu(groupList *groupList1){
             }
 
             strcopy(posX, pos,  pause);
-            strcopy(posY, (pos+pause+1),  pause);
 
-            if(atoi(posX) < 1 || atoi(posX) > groupList1->size){
-                printf("\nGroup not found! press enter to continue...\n");
-                getchar();
-                getchar();
-            }
-            else{
-                damageEnemy(groupList1, atoi(posX), atoi(posY), damage, 1);
+
+
+            int i = (pause+1);
+            int end = 0;
+            while(end == 0){
+                int counter = 0;
+                for(int j = i; i < 256; j++){
+                    ++counter;
+                    if(pos[j] == 32){
+                        pause = i;
+                        i = j+1;
+                        break;
+                    } else if(pos[j] == 0){
+                        end = 1;
+                        pause = i;
+                        i = j+1;
+                        break;
+                    }
+                }
+                if(1){
+                    strcopy(posY, (pos+pause),  counter-1);
+                    if(atoi(posX) < 1 || atoi(posX) > groupList1->size){
+                        printf("\nGroup not found! press enter to continue...\n");
+                        getchar();
+                        getchar();
+                    }
+                    else{
+                        damageEnemy(groupList1, atoi(posX), atoi(posY), damage, 1);
+                        //saveBackUp(groupList1);
+                    }
+                }
+
             }
 
         } else if(option == 6) {
@@ -167,7 +217,7 @@ int groupMenu(groupList *groupList1){
 
             printf("\nInput the position of the enemy: ");
             fflush(stdin);
-            fgets(pos, 10, stdin);
+            fgets(pos, 256, stdin);
             pos[strcspn(pos, "\n")] = 0;
             fflush(stdin);
             printf("\nInput the status effect: ");
@@ -175,50 +225,98 @@ int groupMenu(groupList *groupList1){
             status[strcspn(status, "\n")] = 0;
             fflush(stdin);
 
-            for (int i = 0; i < 10; i++) {
-                if (pos[i] == 32) {
+            for(int i = 0; i < 256; i++){
+                if(pos[i] == 32){
                     pause = i;
                     break;
                 }
             }
 
-            strcopy(posX, pos, pause);
-            strcopy(posY, (pos + pause + 1), pause);
+            strcopy(posX, pos,  pause);
 
-            if (atoi(posX) < 1 || atoi(posX)> groupList1->size) {
-                printf("\nGroup not found! press enter to continue...\n");
-                getchar();
-                getchar();
-            } else {
-                changeStatus(groupList1, atoi(posX), atoi(posY), status);
-                saveBackUp(groupList1);
+
+
+            int i = (pause+1);
+            int end = 0;
+            while(end == 0){
+                int counter = 0;
+                for(int j = i; i < 256; j++){
+                    ++counter;
+                    if(pos[j] == 32){
+                        pause = i;
+                        i = j+1;
+                        break;
+                    } else if(pos[j] == 0){
+                        end = 1;
+                        pause = i;
+                        i = j+1;
+                        break;
+                    }
+                }
+                if(1){
+                    strcopy(posY, (pos+pause),  counter-1);
+                    if(atoi(posX) < 1 || atoi(posX) > groupList1->size){
+                        printf("\nGroup not found! press enter to continue...\n");
+                        getchar();
+                        getchar();
+                    }
+                    else{
+                        changeStatus(groupList1, atoi(posX), atoi(posY), status);
+                        //saveBackUp(groupList1);
+                    }
+                }
+
             }
-        } else if(option == 7) {
 
+        } else if(option == 7) {
 
             printf("\nInput the position of the enemy: ");
             fflush(stdin);
-            fgets(pos, 10, stdin);
+            fgets(pos, 256, stdin);
             pos[strcspn(pos, "\n")] = 0;
             fflush(stdin);
 
-            for (int i = 0; i < 10; i++) {
-                if (pos[i] == 32) {
+            for(int i = 0; i < 256; i++){
+                if(pos[i] == 32){
                     pause = i;
                     break;
                 }
             }
 
-            strcopy(posX, pos, pause);
-            strcopy(posY, (pos + pause + 1), pause);
+            strcopy(posX, pos,  pause);
 
-            if (atoi(posX) < 1 || atoi(posX)> groupList1->size) {
-                printf("\nGroup not found! press enter to continue...\n");
-                getchar();
-                getchar();
-            } else {
-                removeStatus(groupList1, atoi(posX), atoi(posY));
-                saveBackUp(groupList1);
+
+
+            int i = (pause+1);
+            int end = 0;
+            while(end == 0){
+                int counter = 0;
+                for(int j = i; i < 256; j++){
+                    ++counter;
+                    if(pos[j] == 32){
+                        pause = i;
+                        i = j+1;
+                        break;
+                    } else if(pos[j] == 0){
+                        end = 1;
+                        pause = i;
+                        i = j+1;
+                        break;
+                    }
+                }
+                if(1){
+                    strcopy(posY, (pos+pause),  counter-1);
+                    if(atoi(posX) < 1 || atoi(posX) > groupList1->size){
+                        printf("\nGroup not found! press enter to continue...\n");
+                        getchar();
+                        getchar();
+                    }
+                    else{
+                        removeStatus(groupList1, atoi(posX), atoi(posY));
+                        //saveBackUp(groupList1);;
+                    }
+                }
+
             }
         }
     }while(option != 8);
